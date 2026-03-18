@@ -104,21 +104,7 @@ const scanLines = [
     "Finalizing authentication..."
 ];
 
-function showMessageThenGo(message, delay, callback) {
-    const scanner = document.getElementById("scanner");
-    let i = 0;
-    scanner.innerHTML = ""; // rensa scanner
-    const interval = setInterval(() => {
-        if (i < message.length) {
-            scanner.innerHTML += message[i];
-            i++;
-            scanner.scrollTop = scanner.scrollHeight;
-        } else {
-            clearInterval(interval);
-            setTimeout(callback, delay);
-        }
-    }, 50); // skriv en bokstav per 50 ms
-}
+
 
 // ===== START SCAN =====
 function startScan() {
