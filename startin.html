@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>ARCHITECT – Start</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ===== BAKGRUND & FONT ===== */
+body {
+    margin: 0;
+    font-family: "Courier New", monospace;
+    background-color: #0a0f1c;
+    color: #00ffcc;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ===== SCROLLANDE TERMINAL ===== */
+#terminal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #00ff33;
+    font-size: 12px;
+    opacity: 0.15; /* svag så den inte stör */
+    pointer-events: none;
+    overflow: hidden;
+    white-space: pre;
+    line-height: 1.2;
+}
+
+/* ===== HEADER ===== */
+header {
+    padding: 15px;
+    border-bottom: 1px solid #00ffcc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+nav li {
+    cursor: pointer;
+}
+
+nav li:hover {
+    text-decoration: underline;
+}
+
+/* ===== MAIN ===== */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+main h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+main p {
+    font-size: 16px;
+}
+
+/* ===== KNAPP ===== */
+button {
+    margin: 10px 5px;
+    padding: 12px 20px;
+    background: #00ffcc;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    color: black;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background: #00cc99;
+}
+
+/* ===== KONTAKT ===== */
+#contact {
+    margin-top: 40px;
+    border-top: 1px solid #00ffcc;
+    padding-top: 20px;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SCROLLANDE TERMINAL -->
+<div id="terminal-bg"></div>
+
+<header>
+    <h1>ARCHITECT</h1>
+    <nav>
+        <ul>
+            <li onclick="alert('HOME clicked')">HOME</li>
+            <li onclick="alert('MISSIONS clicked')">MISSIONS</li>
+            <li onclick="alert('PROFILE clicked')">PROFILE</li>
+            <li onclick="alert('CONTACT clicked')">CONTACT</li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h2>Welcome Agent</h2>
+    <p>Prepare for your first mission.</p>
+    
+    <div>
+        <button onclick="alert('Start Mission clicked')">START MISSION</button>
+        <button onclick="alert('View Instructions clicked')">INSTRUCTIONS</button>
+    </div>
+    
+    <div id="contact">
+        <p>CONTACT:</p>
+        <p>+46 70 123 45 67</p>
+    </div>
+</main>
+
+<script>
+// ===== TERMINAL-SCROLLING =====
+const terminal = document.getElementById("terminal-bg");
+const lines = [
+    "Initializing ARCHITECT network...",
+    "Decrypting mission files...",
+    "Connecting to secure server...",
+    "Bypassing firewall...",
+    "Scanning global coordinates...",
+    "Retrieving agent logs...",
+    "System check: OK",
+    "Access level: CONFIDENTIAL",
+    "Monitoring active missions...",
+    "Encrypting communication channels...",
+    "Loading mission data..."
+];
+
+function addLine() {
+    const line = lines[Math.floor(Math.random() * lines.length)];
+    terminal.innerHTML += line + "\n";
+    terminal.scrollTop = terminal.scrollHeight;
+}
+
+setInterval(addLine, 200); // ny rad varje 200ms
+</script>
+
+</body>
+</html>
