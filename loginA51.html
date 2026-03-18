@@ -2,7 +2,7 @@
 <html lang="sv">
 <head>
 <meta charset="UTF-8">
-<title>A51 Secure Access System</title>
+<title>Secure Access System</title>
 
 <style>
 /* ===== BAKGRUND ===== */
@@ -75,7 +75,7 @@ button {
 <body>
 
 <div class="container">
-    <h1>A51 Secure Access System</h1>
+    <h1>Secure Access System</h1>
 
     <p>Enter username</p>
 
@@ -131,7 +131,7 @@ function startScan() {
                 scanner.innerHTML += "<br>> ACCESS GRANTED";
                 setTimeout(() => {
                     window.location.href = nextPage;
-                }, 2500;
+                }, 1000);
             } else {
                 scanner.innerHTML += "<br>> ACCESS DENIED";
                 error.style.display = "block";
