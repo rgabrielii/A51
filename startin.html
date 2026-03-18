@@ -19,13 +19,13 @@ body {
 /* ===== SCROLLANDE TERMINAL ===== */
 #terminal-bg {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 100;
+    left: 20;
     width: 100%;
     height: 100%;
     color: #00ff33;
     font-size: 12px;
-    opacity: 0.15; /* svag så den inte stör */
+    opacity: 0.13; /* svag så den inte stör */
     pointer-events: none;
     overflow: hidden;
     white-space: pre;
@@ -115,30 +115,27 @@ button:hover {
 <div id="terminal-bg"></div>
 
 <header>
-    <h1>ARCHITECT</h1>
+    <h1>Area 51 Agent Platform</h1>
     <nav>
         <ul>
             <li onclick="alert('HOME clicked')">HOME</li>
-            <li onclick="alert('MISSIONS clicked')">MISSIONS</li>
-            <li onclick="alert('PROFILE clicked')">PROFILE</li>
-            <li onclick="alert('CONTACT clicked')">CONTACT</li>
+            <li onclick="alert('No pending missions, report back later')">MISSIONS</li>
+            <li onclick="alert('Confidential Agent Profile')">PROFILE</li>
+            <li onclick="alert('To recieve latest information, call to base')">CONTACT</li>
         </ul>
     </nav>
 </header>
 
 <main>
-    <h2>Welcome Agent</h2>
-    <p>Prepare for your first mission.</p>
+    <h2>Welcome Agent Voss</h2>
+    <p></p>
     
     <div>
-        <button onclick="alert('Start Mission clicked')">START MISSION</button>
-        <button onclick="alert('View Instructions clicked')">INSTRUCTIONS</button>
+        <button onclick="alert('No pending missions')">MISSIONS</button>
+        <button onclick="alert('Confidential Agent Profile')">PROFILE</button>
+        <button onclick="alert('Personal base contact: +46 70 123 45 67')">CONTACT</button>
     </div>
     
-    <div id="contact">
-        <p>CONTACT:</p>
-        <p>+46 70 123 45 67</p>
-    </div>
 </main>
 
 <script>
