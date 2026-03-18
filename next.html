@@ -75,11 +75,11 @@ button {
 <body>
 
 <div class="container">
-    <h1>A51 Secure Access System</h1>
+    <h1>A51 SECURE ACCESS SYSTEM</h1>
 
-    <p>Enter username</p>
+    <p>Enter access code</p>
 
-    <input type="username" id="username" placeholder="••••••">
+    <input type="password" id="password" placeholder="••••••">
 
     <button onclick="startScan()">ENTER</button>
 
@@ -90,39 +90,23 @@ button {
 
 <script>
 // ===== INSTÄLLNINGAR =====
-const correctUsername = "Ethan Voss";
-const nextPage = "next.html";
+const correctPassword = "ARCHITECT";
+const nextPage = "startin.html";
 
 // ===== FAKE SCAN TEXT =====
 const scanLines = [
     "Initializing secure connection...",
     "Bypassing firewall...",
-    "Decrypting credentials...",
-    "Scanning user identity...",
-    "Accessing global database...",
-    "Verifying clearance level...",
+    "Verifying user identity...",
+    "Analyzing ip...",
+    "Connecting to mainframe...",
+    "Verifying password...",
     "Finalizing authentication..."
 ];
 
-function showMessageThenGo(message, delay, callback) {
-    const scanner = document.getElementById("scanner");
-    let i = 0;
-    scanner.innerHTML = ""; // rensa scanner
-    const interval = setInterval(() => {
-        if (i < message.length) {
-            scanner.innerHTML += message[i];
-            i++;
-            scanner.scrollTop = scanner.scrollHeight;
-        } else {
-            clearInterval(interval);
-            setTimeout(callback, delay);
-        }
-    }, 50); // skriv en bokstav per 50 ms
-}
-
 // ===== START SCAN =====
 function startScan() {
-    const input = document.getElementById("username").value;
+    const input = document.getElementById("password").value;
     const scanner = document.getElementById("scanner");
     const error = document.getElementById("error");
 
@@ -140,12 +124,12 @@ function startScan() {
         } else {
             clearInterval(interval);
 
-            // Kolla username efter scan
-            if (input === correctUsername) {
+            // Kolla lösenord efter scan
+            if (input === correctPassword) {
                 scanner.innerHTML += "<br>> ACCESS GRANTED";
                 setTimeout(() => {
                     window.location.href = nextPage;
-                }, 2500;
+                }, 1000);
             } else {
                 scanner.innerHTML += "<br>> ACCESS DENIED";
                 error.style.display = "block";
@@ -155,7 +139,7 @@ function startScan() {
 }
 
 // ENTER-tangent
-document.getElementById("username").addEventListener("keypress", function(e) {
+document.getElementById("password").addEventListener("keypress", function(e) {
     if (e.key === "Enter") {
         startScan();
     }
