@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARCHITECT – Access</title>
+<title>A51 - ACCESS</title>
 
 <style>
 body {
@@ -20,11 +20,12 @@ body {
 
 .container {
     text-align: center;
-    border: 1px solid #232424;
-    padding: 30px;
-    width: 50%;
+    border: 1px solid #000000;
+    padding: 90px;
+    width: 60%;
+    height: auto;
     max-width: 350px;
-    box-shadow: 0 0 20px #00ffcc;
+    box-shadow: 0 0 20px #002522;
 }
 
 h1 {
@@ -34,7 +35,7 @@ h1 {
 }
 
 input {
-    width: 100%;
+    width: 78%;
     padding: 12px;
     background: black;
     border: 1px solid #00ffcc;
@@ -46,7 +47,7 @@ input {
 button {
     margin-top: 15px;
     padding: 12px;
-    width: 100%;
+    width: 85%;
     background: #00ffcc;
     border: none;
     cursor: pointer;
@@ -80,8 +81,9 @@ button:hover {
 <body>
 
 <div class="container">
-    <h1>SECURE ACCESS</h1>
-    <p>Enter access code</p>
+    <h1>Secure Access System</h1>
+    <p>[1/2]: User identification</p>
+    <p>Enter username</p>
 
     <input type="password" id="password" placeholder="••••••">
     <button onclick="checkPassword()">ENTER</button>
@@ -92,8 +94,8 @@ button:hover {
 
 <script>
 // ===== INSTÄLLNINGAR =====
-const correctPassword = "ARCHITECT";
-const nextPage = "startin.html";
+const correctPassword = "Ethan Voss";
+const nextPage = "next.html";
 
 // ===== FAKE SYSTEM SCANNING =====
 const scanLines = [
@@ -143,7 +145,7 @@ function checkPassword() {
         } else {
             clearInterval(interval);
             if (input === correctPassword) {
-                showMessageThenGo("> ACCESS GRANTED", 1500, () => {
+                showMessageThenGo("> VERIFIED IDENTIFICATION", 1500, () => {
                     window.location.href = nextPage;
                 });
             } else {
