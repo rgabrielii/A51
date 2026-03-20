@@ -84,8 +84,8 @@ button:hover {
 
 <div class="container">
     <h1>Secure Access System</h1>
-    <p>[1/2]: User identification</p>
-    <p>Enter username</p>
+    <p>[2/2]: Authorization</p>
+    <p>Enter access code</p>
 
     <input type="password" id="password" placeholder="••••••">
     <button onclick="checkPassword()">ENTER</button>
@@ -96,17 +96,17 @@ button:hover {
 
 <script>
 // ===== INSTÄLLNINGAR =====
-const correctPassword = "Ethan Voss";
-const nextPage = "newnext.html";
+const correctPassword = "Azteca";
+const nextPage = "startin.html";
 
 // ===== FAKE SYSTEM SCANNING =====
 const scanLines = [
     "Initializing secure connection...",
     "Bypassing firewall...",
-    "Decrypting credentials...",
-    "Scanning user identity...",
-    "Accessing global database...",
-    "Verifying clearance level...",
+    "Verifying user identity...",
+    "Analyzing ip...",
+    "Connecting to mainframe...",
+    "Verifying password...",
     "Finalizing authentication..."
 ];
 
@@ -147,7 +147,7 @@ function checkPassword() {
         } else {
             clearInterval(interval);
             if (input === correctPassword) {
-                showMessageThenGo("> VERIFIED IDENTIFICATION", 1500, () => {
+                showMessageThenGo("> ACCESS GRANTED", 1500, () => {
                     window.location.href = nextPage;
                 });
             } else {
