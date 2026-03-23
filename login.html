@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A51 - ACCESS</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Courier New", monospace;
+    background-color: #0a0f1c;
+    color: #00ffcc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.container {
+    text-align: center;
+    border: 1px solid #000000;
+    padding: 30px;
+    width: 60%;
+    height: auto;
+    max-width: 350px;
+    box-shadow: 0 0 20px #002522;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    letter-spacing: 2px;
+}
+
+input {
+    width: 78%;
+    padding: 12px;
+    background: black;
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    text-align: center;
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px;
+    width: 85%;
+    background: #00ffcc;
+    border: none;
+    cursor: pointer;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    color: black;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background: #00cc99;
+}
+
+#error {
+    color: red;
+    margin-top: 10px;
+    display: none;
+}
+
+#scanner {
+    margin-top: 15px;
+    text-align: left;
+    font-size: 12px;
+    height: 100px;
+    overflow: hidden;
+    white-space: pre;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Secure Access System</h1>
+    <p>[1/2]: User identification</p>
+    <p>Enter username</p>
+
+    <input type="password" id="password" placeholder="••••••">
+    <button onclick="checkPassword()">ENTER</button>
+
+    <p id="error">ACCESS DENIED</p>
+    <div id="scanner"></div>
+</div>
+
+<script>
+// ===== INSTÄLLNINGAR =====
+const correctPassword = "Ethan Voss";
+const nextPage = "pass.html";
+
+// ===== FAKE SYSTEM SCANNING =====
+const scanLines = [
+    "Initializing secure connection...",
+    "Bypassing firewall...",
+    "Decrypting credentials...",
+    "Scanning user identity...",
+    "Accessing global database...",
+    "Verifying clearance level...",
+    "Finalizing authentication..."
+];
+
+// ===== BOKSTAV-FÖR-BOKSTAV FUNKTION =====
+function showMessageThenGo(message, delay, callback) {
+    const scanner = document.getElementById("scanner");
+    let i = 0;
+    scanner.innerHTML = ""; // rensa scanner
+    const interval = setInterval(() => {
+        if (i < message.length) {
+            scanner.innerHTML += message[i];
+            i++;
+            scanner.scrollTop = scanner.scrollHeight;
+        } else {
+            clearInterval(interval);
+            setTimeout(callback, delay);
+        }
+    }, 50);
+}
+
+// ===== CHECK PASSWORD =====
+function checkPassword() {
+    const input = document.getElementById("password").value;
+    const scanner = document.getElementById("scanner");
+    const error = document.getElementById("error");
+
+    scanner.innerHTML = "";
+    scanner.style.display = "block";
+    error.style.display = "none";
+
+    let i = 0;
+
+    const interval = setInterval(() => {
+        if (i < scanLines.length) {
+            scanner.innerHTML += "> " + scanLines[i] + "\n";
+            scanner.scrollTop = scanner.scrollHeight;
+            i++;
+        } else {
+            clearInterval(interval);
+            if (input === correctPassword) {
+                showMessageThenGo("> VERIFIED IDENTIFICATION", 1500, () => {
+                    window.location.href = nextPage;
+                });
+            } else {
+                scanner.innerHTML += "\n> ACCESS DENIED";
+                error.style.display = "block";
+            }
+        }
+    }, 400); // 400ms per rad, ändra för snabbare/långsammare
+}
+
+// ===== ENTER-TANGENT FUNKAR =====
+document.getElementById("password").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        checkPassword();
+    }
+});
+</script>
+
+</body>
+</html>

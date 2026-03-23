@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>CLASSIFIED VIEW</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css"/>
+<script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    color: #00ff88;
+    font-family: monospace;
+    overflow: hidden;
+}
+
+/* GLITCH SCREEN */
+#glitchScreen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* SCAN TEXT */
+#scanText {
+    font-size: 14px;
+    width: 80%;
+    max-width: 400px;
+}
+
+/* GLITCH EFFECT */
+.glitch {
+    position: relative;
+    color: #00ff88;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+}
+
+.glitch::before {
+    animation: glitchTop 0.3s infinite;
+    color: red;
+    clip-path: inset(0 0 50% 0);
+}
+
+.glitch::after {
+    animation: glitchBottom 0.3s infinite;
+    color: blue;
+    clip-path: inset(50% 0 0 0);
+}
+
+@keyframes glitchTop {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(-2px,-2px); }
+    100% { transform: translate(2px,2px); }
+}
+
+@keyframes glitchBottom {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(2px,2px); }
+    100% { transform: translate(-2px,-2px); }
+}
+
+/* PANORAMA */
+#panorama {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+}
+
+/* OVERLAY */
+.overlay {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    background: rgba(0,0,0,0.6);
+    padding: 10px;
+    border: 1px solid #00ff88;
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- GLITCH INTRO -->
+<div id="glitchScreen">
+    <div id="scanText" class="glitch" data-text="">
+    </div>
+</div>
+
+<!-- PANORAMA -->
+<div id="panorama"></div>
+
+<div class="overlay" id="overlay">
+    > SURVEILLANCE FEED ACTIVE<br>
+    > LOCATION: UNKNOWN
+</div>
+
+<script>
+const lines = [
+    "> INITIALIZING SYSTEM...",
+    "> CONNECTING TO SECURE NODE...",
+    "> BYPASSING FIREWALL...",
+    "> ACCESSING CAMERA FEED...",
+    "> DECRYPTING SIGNAL...",
+    "> ACCESS GRANTED"
+];
+
+let i = 0;
+let j = 0;
+const speed = 30;
+const scan = document.getElementById("scanText");
+
+function typeLine() {
+    if (i < lines.length) {
+        if (j < lines[i].length) {
+            scan.innerHTML += lines[i].charAt(j);
+            j++;
+            setTimeout(typeLine, speed);
+        } else {
+            scan.innerHTML += "<br>";
+            j = 0;
+            i++;
+            setTimeout(typeLine, 300);
+        }
+    } else {
+        setTimeout(startPanorama, 1000);
+    }
+}
+
+function startPanorama() {
+    document.getElementById("glitchScreen").style.display = "none";
+    document.getElementById("panorama").style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+
+    pannellum.viewer('panorama', {
+        "type": "equirectangular",
+        "panorama": "surveillance.png",
+        "autoLoad": true
+    });
+}
+
+typeLine();
+</script>
+
+</body>
+</html>
