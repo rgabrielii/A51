@@ -133,6 +133,12 @@ button:hover {
 
 <body>
 
+<script>
+if (sessionStorage.getItem("access") !== "granted") {
+    document.body.innerHTML = "> ACCESS BLOCKED";
+}
+</script>
+
 <!-- SCROLLANDE TERMINAL -->
 <div id="terminal-bg"></div>
 

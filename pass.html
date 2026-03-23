@@ -148,6 +148,9 @@ function checkPassword() {
             clearInterval(interval);
             if (input === correctPassword) {
                 showMessageThenGo("> ACCESS GRANTED", 1500, () => {
+                    
+                    sessionStorage.setItem("access", "granted");
+                    
                     window.location.href = nextPage;
                 });
             } else {
