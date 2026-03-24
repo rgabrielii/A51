@@ -205,13 +205,21 @@ function startPanorama() {
             "pitch": -40,
             "yaw": 70,
             "cssClass": "custom-hotspot",
-            "clickHandlerFunc": openImage
+            "clickHandlerFunc": () => openImage("rec.jpg")
+        },
+
+        {
+            "pitch": -10,
+            "yaw": 0,
+            "cssClass": "custom-hotspot",
+            "clickHandlerFunc": () => openImage("log.jpg")
         }
     ]
     });
 }
 
-function openImage() {
+function openImage(imageSrc) {
+    document.getElementById("popupImg").src = imageSrc;
     document.getElementById("imagePopup").style.display = "flex";
 }
 
